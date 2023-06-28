@@ -5,7 +5,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'client/build')));
+
 
 app.get('/videos', (req, res) => {
   const videos = getVideos();
