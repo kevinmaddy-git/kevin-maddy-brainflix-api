@@ -29,8 +29,11 @@ app.post('/videos', (req, res) => {
 
   const newVideo = {
     id: newVideoId,
-    ...videoData,
+    title: videoData.title,
+    description: videoData.description,
+    // Add other hard-coded properties here
   };
+
   videos.push(newVideo);
   saveVideos(videos);
   res.status(201).json(newVideo);
