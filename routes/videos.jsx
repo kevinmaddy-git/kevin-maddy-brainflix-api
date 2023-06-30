@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const { url } = require('inspector');
 const path = require('path');
 const app = express();
 const PORT = 3000;
@@ -26,12 +27,28 @@ app.post('/videos', (req, res) => {
   const videoData = req.body;
   const videos = getVideos();
   const newVideoId = generateUniqueId();
+  const newCommentID = generateUniqueId();
 
   const newVideo = {
     id: newVideoId,
     title: videoData.title,
+    channel: "Blue Moose",
+    image: 'https://i.imgur.com/CSseHSv.jpg',
     description: videoData.description,
-    // Add other hard-coded properties here
+    views: "1",
+    likes: "1",
+    duration: "2:36",
+    video: videoData.video,
+    timestamp: new Date().toISOString(),
+    comments: [
+      {
+        id: newCommentID,
+        name: "Kevin Maddy",
+        comment: "Beatiful views!  I cannot wait to visit!",
+        likes: 0,
+        timestamp: new Date().toISOString(), 
+      },
+    ]
   };
 
   videos.push(newVideo);
